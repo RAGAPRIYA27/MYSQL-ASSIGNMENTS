@@ -1,0 +1,185 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\f0\fs22 mysql> select * from customer;\par
++-------------+----------------+------------+-------+-------------+\par
+| customer_id | cust_name      | city       | grade | salesman_id |\par
++-------------+----------------+------------+-------+-------------+\par
+|        3001 | Brad Guzan     | London     |  NULL |        5005 |\par
+|        3002 | Nick Rimando   | New York   |   100 |        5001 |\par
+|        3003 | Jozy Altidor   | Moscow     |   200 |        5007 |\par
+|        3004 | Fabian Johnson | Paris      |   300 |        5006 |\par
+|        3005 | Graham Zusi    | California |   200 |        5002 |\par
+|        3007 | Brad Davis     | New York   |   200 |        5001 |\par
+|        3008 | Julian Green   | London     |   300 |        5002 |\par
+|        3009 | Geoff Cameron  | Berlin     |   100 |        5003 |\par
++-------------+----------------+------------+-------+-------------+\par
+\par
+\par
+mysql> select * from salesman;\par
++-------------+------------+----------+------------+\par
+| salesman_id | name       | city     | commission |\par
++-------------+------------+----------+------------+\par
+|        5001 | James Hoog | New York |       0.15 |\par
+|        5002 | Nail Knite | Paris    |       0.13 |\par
+|        5003 | Lauson Hen | San Jose |       0.12 |\par
+|        5005 | Pit Alex   | London   |       0.11 |\par
+|        5006 | Mc Lyon    | Paris    |       0.14 |\par
+|        5007 | Paul Adam  | Rome     |       0.13 |\par
++-------------+------------+----------+------------+\par
+\par
+\par
+mysql> select * from orders;\par
++--------+-----------+------------+-------------+-------------+\par
+| ord_no | purch_amt | ord_date   | customer_id | salesman_id |\par
++--------+-----------+------------+-------------+-------------+\par
+|  70001 |     150.5 | 2012-10-05 |        3005 |        5002 |\par
+|  70002 |     65.26 | 2012-10-05 |        3002 |        5001 |\par
+|  70003 |    2480.4 | 2012-10-10 |        3009 |        5003 |\par
+|  70004 |     110.5 | 2012-08-17 |        3009 |        5003 |\par
+|  70005 |    2400.6 | 2012-07-27 |        3007 |        5001 |\par
+|  70007 |     948.5 | 2012-09-10 |        3005 |        5002 |\par
+|  70008 |      5760 | 2012-09-10 |        3002 |        5001 |\par
+|  70009 |    270.65 | 2012-09-10 |        3001 |        5005 |\par
+|  70010 |   1983.43 | 2012-10-10 |        3004 |        5006 |\par
+|  70011 |     75.29 | 2012-08-17 |        3003 |        5007 |\par
+|  70012 |    250.45 | 2012-06-27 |        3008 |        5002 |\par
+|  70013 |    3045.6 | 2012-04-25 |        3002 |        5001 |\par
++--------+-----------+------------+-------------+-------------+\par
+\par
+\par
+mysql> select * from emp_details;\par
++----------+-----------+-----------+----------+\par
+| emp_idno | emp_fname | emp_lname | emp_dept |\par
++----------+-----------+-----------+----------+\par
+|   127323 | Michale   | Robbin    |       57 |\par
+|   328717 | Jhon      | Snares    |       63 |\par
+|   444527 | Joseph    | Dosni     |       47 |\par
+|   526689 | Carlos    | Snares    |       63 |\par
+|   539569 | George    | Mardy     |       27 |\par
+|   555935 | Alex      | Manuel    |       57 |\par
+|   631548 | Alan      | Snappy    |       27 |\par
+|   659831 | Zanifer   | Emily     |       47 |\par
+|   733843 | Mario     | Saule     |       63 |\par
+|   748681 | Henrey    | Gabriel   |       47 |\par
+|   839139 | Maria     | Foster    |       57 |\par
+|   843795 | Enric     | Dosio     |       57 |\par
+|   847674 | Kuleswar  | Sitaraman |       57 |\par
++----------+-----------+-----------+----------+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM customer\par
+    -> WHERE NOT (city = 'New York' OR grade>100);\par
++-------------+---------------+--------+-------+-------------+\par
+| customer_id | cust_name     | city   | grade | salesman_id |\par
++-------------+---------------+--------+-------+-------------+\par
+|        3009 | Geoff Cameron | Berlin |   100 |        5003 |\par
++-------------+---------------+--------+-------+-------------+\par
+\par
+\par
+mysql>  SELECT *\par
+    -> FROM orders\par
+    -> WHERE NOT ((ord_date='2012-09-10'\par
+    -> AND salesman_id>5005)\par
+    -> OR purch_amt>1000.00);\par
++--------+-----------+------------+-------------+-------------+\par
+| ord_no | purch_amt | ord_date   | customer_id | salesman_id |\par
++--------+-----------+------------+-------------+-------------+\par
+|  70001 |     150.5 | 2012-10-05 |        3005 |        5002 |\par
+|  70002 |     65.26 | 2012-10-05 |        3002 |        5001 |\par
+|  70004 |     110.5 | 2012-08-17 |        3009 |        5003 |\par
+|  70007 |     948.5 | 2012-09-10 |        3005 |        5002 |\par
+|  70009 |    270.65 | 2012-09-10 |        3001 |        5005 |\par
+|  70011 |     75.29 | 2012-08-17 |        3003 |        5007 |\par
+|  70012 |    250.45 | 2012-06-27 |        3008 |        5002 |\par
++--------+-----------+------------+-------------+-------------+\par
+\par
+\par
+mysql> SELECT salesman_id,name,city,commission\par
+    -> FROM salesman\par
+    -> WHERE (commission > 0.10\par
+    -> AND commission < 0.12);\par
++-------------+----------+--------+------------+\par
+| salesman_id | name     | city   | commission |\par
++-------------+----------+--------+------------+\par
+|        5005 | Pit Alex | London |       0.11 |\par
++-------------+----------+--------+------------+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM orders\par
+    -> WHERE (purch_amt<200 OR\par
+    -> NOT (ord_date>='2012-02-10'\par
+    -> AND customer_id<3009));\par
++--------+-----------+------------+-------------+-------------+\par
+| ord_no | purch_amt | ord_date   | customer_id | salesman_id |\par
++--------+-----------+------------+-------------+-------------+\par
+|  70001 |     150.5 | 2012-10-05 |        3005 |        5002 |\par
+|  70002 |     65.26 | 2012-10-05 |        3002 |        5001 |\par
+|  70003 |    2480.4 | 2012-10-10 |        3009 |        5003 |\par
+|  70004 |     110.5 | 2012-08-17 |        3009 |        5003 |\par
+|  70011 |     75.29 | 2012-08-17 |        3003 |        5007 |\par
++--------+-----------+------------+-------------+-------------+\par
+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM orders\par
+    -> WHERE NOT ((ord_date='2012-08-17'\par
+    -> OR customer_id>3005)\par
+    -> AND purch_amt<1000);\par
++--------+-----------+------------+-------------+-------------+\par
+| ord_no | purch_amt | ord_date   | customer_id | salesman_id |\par
++--------+-----------+------------+-------------+-------------+\par
+|  70001 |     150.5 | 2012-10-05 |        3005 |        5002 |\par
+|  70002 |     65.26 | 2012-10-05 |        3002 |        5001 |\par
+|  70003 |    2480.4 | 2012-10-10 |        3009 |        5003 |\par
+|  70005 |    2400.6 | 2012-07-27 |        3007 |        5001 |\par
+|  70007 |     948.5 | 2012-09-10 |        3005 |        5002 |\par
+|  70008 |      5760 | 2012-09-10 |        3002 |        5001 |\par
+|  70009 |    270.65 | 2012-09-10 |        3001 |        5005 |\par
+|  70010 |   1983.43 | 2012-10-10 |        3004 |        5006 |\par
+|  70013 |    3045.6 | 2012-04-25 |        3002 |        5001 |\par
++--------+-----------+------------+-------------+-------------+\par
+\par
+\par
+mysql> SELECT ord_no,purch_amt,\par
+    -> (100*purch_amt)/6000 AS "Achieved %",\par
+    -> (100*(6000-purch_amt)/6000) AS "Unachieved %"\par
+    -> FROM orders\par
+    -> WHERE (100*purch_amt)/6000>50;\par
++--------+-----------+------------+--------------+\par
+| ord_no | purch_amt | Achieved % | Unachieved % |\par
++--------+-----------+------------+--------------+\par
+|  70008 |      5760 |         96 |            4 |\par
+|  70013 |    3045.6 |      50.76 |        49.24 |\par
++--------+-----------+------------+--------------+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM emp_details\par
+    -> WHERE emp_lname='Dosni' OR emp_lname='Mardy';\par
++----------+-----------+-----------+----------+\par
+| emp_idno | emp_fname | emp_lname | emp_dept |\par
++----------+-----------+-----------+----------+\par
+|   444527 | Joseph    | Dosni     |       47 |\par
+|   539569 | George    | Mardy     |       27 |\par
++----------+-----------+-----------+----------+\par
+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM emp_details\par
+    -> WHERE emp_dept=47 OR emp_dept=63;\par
++----------+-----------+-----------+----------+\par
+| emp_idno | emp_fname | emp_lname | emp_dept |\par
++----------+-----------+-----------+----------+\par
+|   328717 | Jhon      | Snares    |       63 |\par
+|   444527 | Joseph    | Dosni     |       47 |\par
+|   526689 | Carlos    | Snares    |       63 |\par
+|   659831 | Zanifer   | Emily     |       47 |\par
+|   733843 | Mario     | Saule     |       63 |\par
+|   748681 | Henrey    | Gabriel   |       47 |\par
++----------+-----------+-----------+----------+\par
+\'a9 2022 GitHub, Inc.\par
+}
+ 

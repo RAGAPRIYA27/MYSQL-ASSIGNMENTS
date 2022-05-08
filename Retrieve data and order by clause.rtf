@@ -1,0 +1,205 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\f0\fs22 mysql> select * from employees;\par
++-------------+-------------+-----------+----------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+| employee_id | first_name  | last_name | email    | phone_number | hire_date  | job_id     | salary | commission_pct | manager_id | department_id |\par
++-------------+-------------+-----------+----------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+|         100 | Steven      | King      | @SKING   | 515.123.4567 | 2003-06-17 | AD_PRES    |  24000 |              0 |          0 |            90 |\par
+|         101 | Dinesh      | Kumar     | @DKUMAR  | 515.123.4568 | 2005-09-21 | AD_VP      |  17000 |              0 |        100 |            90 |\par
+|         103 | David       | Raj       | @DAVRAJ  | 515.123.4569 | 2001-01-13 | IT_PROG    |  25000 |              0 |        102 |            60 |\par
+|         104 | Ragu        | Prasad    | @RAGU123 | 515.123.4570 | 2007-02-07 | IT_PROG    |  48000 |              0 |        103 |            60 |\par
+|         108 | Nancy       | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | FI_MGR     |  12000 |              0 |        101 |           100 |\par
+|         109 | Daniel      | Faviet    | DFAVIET  | 515.124.4169 | 1987-06-26 | FI_ACCOUNT |   9000 |              0 |        108 |           100 |\par
+|         114 | Den         | Raphaely  | DRAPHAEL | 515.127.4561 | 1987-07-01 | PU_MAN     |  11000 |              0 |        100 |            30 |\par
+|         115 | Alexander   | khoo      | AKHOO    | 515.127.4562 | 1987-07-02 | PU_CLERK   |   3100 |              0 |        114 |            30 |\par
+|         116 | Shelli      | Baida     | SBAIDA   | 515.127.4563 | 1987-07-03 | PU_CLERK   |   2900 |              0 |        114 |            30 |\par
+|         120 | Matthew     | Weiss     | MWEISS   | 650-123-1234 | 1987-07-07 | ST_MAN     |   8000 |              0 |        100 |            50 |\par
+|         121 | Christopher | Olsen     | COLSEN   | 011.44.1344  | 1987-08-09 | SA_REP     |   8000 |            0.2 |        145 |            80 |\par
+|         150 | Bruce       | Ernst     | BERNST   | 590.423.4568 | 1987-06-21 | IT_PROG    |   6000 |              0 |        103 |            60 |\par
+|         195 | Vance       | Jones     | VJONES   | 650.501.4876 | 1987-09-20 | SH_CLERK   |   2800 |              0 |        123 |            50 |\par
+|         200 | Jennifer    | Scott     | JSCOTT   | 515.123.4444 | 1987-09-25 | AD_ASST    |   4400 |              0 |        101 |            10 |\par
+|         203 | Susan       | Ford      | SFORD    | 515.123.7777 | 1987-09-28 | HR_REP     |   6500 |              0 |        101 |            40 |\par
+|         206 | William     | Blake     | WBLAKE   | 515.123.8181 | 1987-10-01 | AC_ACCOUNT |   8300 |              0 |        205 |           110 |\par
++-------------+-------------+-----------+----------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+\par
+mysql> SELECT first_name,last_name,salary\par
+    -> FROM employees\par
+    -> WHERE salary  NOT BETWEEN 10000 AND 15000;\par
++-------------+-----------+--------+\par
+| first_name  | last_name | salary |\par
++-------------+-----------+--------+\par
+| Steven      | King      |  24000 |\par
+| Dinesh      | Kumar     |  17000 |\par
+| David       | Raj       |  25000 |\par
+| Ragu        | Prasad    |  48000 |\par
+| Daniel      | Faviet    |   9000 |\par
+| Alexander   | khoo      |   3100 |\par
+| Shelli      | Baida     |   2900 |\par
+| Matthew     | Weiss     |   8000 |\par
+| Christopher | Olsen     |   8000 |\par
+| Bruce       | Ernst     |   6000 |\par
+| Vance       | Jones     |   2800 |\par
+| Jennifer    | Scott     |   4400 |\par
+| Susan       | Ford      |   6500 |\par
+| William     | Blake     |   8300 |\par
++-------------+-----------+--------+\par
+\par
+\par
+\par
+mysql>\par
+mysql> SELECT first_name,last_name,department_id\par
+    -> FROM employees\par
+    -> WHERE department_id IN (30,100)\par
+    -> ORDER BY department_id ASC;\par
++------------+-----------+---------------+\par
+| first_name | last_name | department_id |\par
++------------+-----------+---------------+\par
+| Den        | Raphaely  |            30 |\par
+| Alexander  | khoo      |            30 |\par
+| Shelli     | Baida     |            30 |\par
+| Nancy      | Greenberg |           100 |\par
+| Daniel     | Faviet    |           100 |\par
++------------+-----------+---------------+\par
+\par
+\par
+mysql> SELECT first_name,last_name,salary,department_id\par
+    -> FROM employees\par
+    -> WHERE salary  NOT BETWEEN 10000 AND 15000\par
+    -> AND department_id IN (30,100);\par
++------------+-----------+--------+---------------+\par
+| first_name | last_name | salary | department_id |\par
++------------+-----------+--------+---------------+\par
+| Daniel     | Faviet    |   9000 |           100 |\par
+| Alexander  | khoo      |   3100 |            30 |\par
+| Shelli     | Baida     |   2900 |            30 |\par
++------------+-----------+--------+---------------+\par
+\par
+\par
+\par
+mysql> SELECT first_name,last_name,hire_date\par
+    -> FROM employees\par
+    -> WHERE YEAR(hire_date) LIKE '1987%';\par
++-------------+-----------+------------+\par
+| first_name  | last_name | hire_date  |\par
++-------------+-----------+------------+\par
+| Nancy       | Greenberg | 1987-06-25 |\par
+| Daniel      | Faviet    | 1987-06-26 |\par
+| Den         | Raphaely  | 1987-07-01 |\par
+| Alexander   | khoo      | 1987-07-02 |\par
+| Shelli      | Baida     | 1987-07-03 |\par
+| Matthew     | Weiss     | 1987-07-07 |\par
+| Christopher | Olsen     | 1987-08-09 |\par
+| Bruce       | Ernst     | 1987-06-21 |\par
+| Vance       | Jones     | 1987-09-20 |\par
+| Jennifer    | Scott     | 1987-09-25 |\par
+| Susan       | Ford      | 1987-09-28 |\par
+| William     | Blake     | 1987-10-01 |\par
++-------------+-----------+------------+\par
+\par
+\par
+mysql> SELECT first_name\par
+    -> FROM employees\par
+    -> WHERE first_name LIKE '%b%'\par
+    -> AND first_name LIKE '%c%';\par
++------------+\par
+| first_name |\par
++------------+\par
+| Bruce      |\par
++------------+\par
+\par
+\par
+mysql>  SELECT last_name,job_id,salary\par
+    -> FROM employees\par
+    -> WHERE job_id IN ('IT_PROG','SH_CLERK')\par
+    -> AND salary NOT IN (4500,10000,15000);\par
++-----------+----------+--------+\par
+| last_name | job_id   | salary |\par
++-----------+----------+--------+\par
+| Raj       | IT_PROG  |  25000 |\par
+| Prasad    | IT_PROG  |  48000 |\par
+| Ernst     | IT_PROG  |   6000 |\par
+| Jones     | SH_CLERK |   2800 |\par
++-----------+----------+--------+\par
+\par
+\par
+mysql> SELECT last_name\par
+    -> FROM employees\par
+    -> WHERE last_name LIKE '______';\par
++-----------+\par
+| last_name |\par
++-----------+\par
+| Prasad    |\par
+| Faviet    |\par
++-----------+\par
+\par
+\par
+\par
+mysql> SELECT last_name\par
+    -> FROM employees\par
+    -> WHERE last_name LIKE '__e%';\par
++-----------+\par
+| last_name |\par
++-----------+\par
+| Greenberg |\par
++-----------+\par
+\par
+\par
+mysql> SELECT DISTINCT job_id\par
+    -> FROM employees\par
+    -> ;\par
++------------+\par
+| job_id     |\par
++------------+\par
+| AD_PRES    |\par
+| AD_VP      |\par
+| IT_PROG    |\par
+| FI_MGR     |\par
+| FI_ACCOUNT |\par
+| PU_MAN     |\par
+| PU_CLERK   |\par
+| ST_MAN     |\par
+| SA_REP     |\par
+| SH_CLERK   |\par
+| AD_ASST    |\par
+| HR_REP     |\par
+| AC_ACCOUNT |\par
++------------+\par
+\par
+\par
+mysql> SELECT first_name,last_name,salary,salary*.15 PF\par
+    -> FROM employees\par
+    -> ;\par
++-------------+-----------+--------+------+\par
+| first_name  | last_name | salary | PF   |\par
++-------------+-----------+--------+------+\par
+| Steven      | King      |  24000 | 3600 |\par
+| Dinesh      | Kumar     |  17000 | 2550 |\par
+| David       | Raj       |  25000 | 3750 |\par
+| Ragu        | Prasad    |  48000 | 7200 |\par
+| Nancy       | Greenberg |  12000 | 1800 |\par
+| Daniel      | Faviet    |   9000 | 1350 |\par
+| Den         | Raphaely  |  11000 | 1650 |\par
+| Alexander   | khoo      |   3100 |  465 |\par
+| Shelli      | Baida     |   2900 |  435 |\par
+| Matthew     | Weiss     |   8000 | 1200 |\par
+| Christopher | Olsen     |   8000 | 1200 |\par
+| Bruce       | Ernst     |   6000 |  900 |\par
+| Vance       | Jones     |   2800 |  420 |\par
+| Jennifer    | Scott     |   4400 |  660 |\par
+| Susan       | Ford      |   6500 |  975 |\par
+| William     | Blake     |   8300 | 1245 |\par
++-------------+-----------+--------+------+\par
+\par
+\par
+mysql> SELECT *\par
+    -> FROM employees\par
+    -> WHERE last_name IN('BLAKE','SCOTT','KING','FORD');\par
++-------------+------------+-----------+--------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+| employee_id | first_name | last_name | email  | phone_number | hire_date  | job_id     | salary | commission_pct | manager_id | department_id |\par
++-------------+------------+-----------+--------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+|         100 | Steven     | King      | @SKING | 515.123.4567 | 2003-06-17 | AD_PRES    |  24000 |              0 |          0 |            90 |\par
+|         200 | Jennifer   | Scott     | JSCOTT | 515.123.4444 | 1987-09-25 | AD_ASST    |   4400 |              0 |        101 |            10 |\par
+|         203 | Susan      | Ford      | SFORD  | 515.123.7777 | 1987-09-28 | HR_REP     |   6500 |              0 |        101 |            40 |\par
+|         206 | William    | Blake     | WBLAKE | 515.123.8181 | 1987-10-01 | AC_ACCOUNT |   8300 |              0 |        205 |           110 |\par
++-------------+------------+-----------+--------+--------------+------------+------------+--------+----------------+------------+---------------+\par
+}
+ 
